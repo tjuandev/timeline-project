@@ -1,0 +1,10 @@
+src/assets/*
+.storybook
+dist
+yarn.lock
+.gitignore
+.eslintignore
+.gitattributes
+coverage
+storybook-static
+.tsBuildInfoFile
