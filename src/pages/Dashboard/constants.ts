@@ -1,4 +1,5 @@
 // REVIEW -> Remember to remove this comment when improving this mock data
+// This guy can be moved to mock.ts
 /* eslint-disable sonarjs/no-duplicate-string */
 export const TIMELINE_ITEMS = [
   {

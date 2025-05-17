@@ -1,31 +1,37 @@
-import { TIMELINE_ITEMS } from './constants'
+import { format } from 'date-fns'
 
-type MinAndMaxDates = {
-  min: string
-  max: string
-}
+import { useTimeline } from './hooks/useTimeline'
+
+import { S } from './styles'
+
+import { getWeekRangeFormatted } from './helpers'
 
 export const Dashboard = () => {
-  const minAndMaxDates = (
-    TIMELINE_ITEMS as Array<{ start: string; end: string }>
-  ).reduce<MinAndMaxDates>(
-    (acc, item) => {
-      return {
-        min: item.start < acc.min ? item.start : acc.min,
-        max: item.end > acc.max ? item.end : acc.max
-      }
-    },
-    {
-      min: TIMELINE_ITEMS[0]?.start ?? '',
-      max: TIMELINE_ITEMS[0]?.end ?? ''
-    }
-  )
+  const { lanes, weekIntervalDays } = useTimeline()
 
   return (
     <div>
-      <h1>
-        Dashboard {minAndMaxDates.min} {minAndMaxDates.max}
-      </h1>
+      <h1>{getWeekRangeFormatted(weekIntervalDays)}</h1>
+      <div className={S.columnsContainer}>
+        {weekIntervalDays.map(day => (
+          <div key={day.toISOString()} className={S.column}>
+            {format(day, 'EEE d')}
+          </div>
+        ))}
+      </div>
+      <div className={S.lanesContainer}>
+        {lanes.map((lane, li) => (
+          <div key={li} className={S.lane}>
+            {lane.map(item => {
+              return (
+                <div key={item.id}>
+                  {item.name} / {item.start} / {item.end}
+                </div>
+              )
+            })}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
