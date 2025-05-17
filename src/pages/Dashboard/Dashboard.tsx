@@ -32,6 +32,7 @@ export const Dashboard = () => {
                   key={item.id}
                   name={item.name}
                   dateRange={getItemRangeFormatted(item.start, item.end)}
+                  color="green"
                 />
               )
             })}
