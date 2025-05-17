@@ -118,7 +118,8 @@
     "space-before-function-paren": "off",
     "eslint-disable-next-line": "off",
     "react/display-name": "off",
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "import/no-named-as-default": "off"
   },
   "overrides": [
     {
