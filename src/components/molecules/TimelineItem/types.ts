@@ -1,5 +1,10 @@
+import type { VariantProps } from 'class-variance-authority'
+
+import type { S } from './styles'
+
 export interface TimelineItemProps {
   name: string
   dateRange: string
-  color?: 'red' | 'yellow' | 'green' | 'blue' | 'lightBlue' | 'gray' | 'purple'
+  color?: VariantProps<typeof S.container>['color']
+  endingPos?: VariantProps<typeof S.container>['endingPos']
 }

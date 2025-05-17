@@ -27,13 +27,42 @@ export const Dashboard = () => {
         {lanes.map((lane, li) => (
           <div key={li} className={S.lane}>
             {lane.map(item => {
+              const laneColumnStart = weekIntervalDays.findIndex(
+                day =>
+                  day.toDateString() === new Date(item.start).toDateString()
+              )
+              const laneColumnEnd = weekIntervalDays.findIndex(
+                day => day.toDateString() === new Date(item.end).toDateString()
+              )
+
+              const isEndingInCurrentWeek = laneColumnEnd !== -1
+              const isStartingInCurrentWeek = laneColumnStart !== -1
+
               return (
-                <TimelineItem
+                <div
+                  className={S.laneItem(
+                    isEndingInCurrentWeek,
+                    isStartingInCurrentWeek
+                  )}
                   key={item.id}
-                  name={item.name}
-                  dateRange={getItemRangeFormatted(item.start, item.end)}
-                  color="green"
-                />
+                  style={{
+                    gridColumnStart: isStartingInCurrentWeek
+                      ? laneColumnStart + 1
+                      : 1,
+                    gridColumnEnd: isEndingInCurrentWeek ? laneColumnEnd + 1 : 8
+                  }}
+                >
+                  <TimelineItem
+                    name={item.name}
+                    dateRange={getItemRangeFormatted(item.start, item.end)}
+                    color="red"
+                    endingPos={(() => {
+                      if (isEndingInCurrentWeek) return 'right'
+                      if (isStartingInCurrentWeek) return 'left'
+                      return undefined
+                    })()}
+                  />
+                </div>
               )
             })}
           </div>

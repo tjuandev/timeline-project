@@ -2,7 +2,19 @@ import { cva } from 'class-variance-authority'
 import clsx from 'clsx'
 
 const columnVariants = cva(
-  'flex h-10 flex-col items-start !gap-0 rounded-md border-l-4 p-2 text-gray-800 shadow-none',
+  clsx(
+    'flex',
+    'h-10',
+    'w-full',
+    'flex-col',
+    'items-start',
+    '!gap-0',
+    'rounded-md',
+    'border-l-4',
+    'p-2',
+    'text-gray-800',
+    'shadow-none'
+  ),
   {
     variants: {
       color: {
@@ -13,6 +25,10 @@ const columnVariants = cva(
         lightBlue: 'border-sky-500/90 bg-sky-200 hover:bg-sky-300/80',
         gray: 'border-gray-500/90 bg-gray-200 hover:bg-gray-300/80',
         purple: 'border-purple-500/90 bg-purple-200 hover:bg-purple-300/80'
+      },
+      endingPos: {
+        left: clsx('!rounded-r-none'),
+        right: clsx('!rounded-l-none')
       }
     },
     defaultVariants: {

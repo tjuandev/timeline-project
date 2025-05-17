@@ -13,5 +13,13 @@ export const S = {
     'text-sm'
   ),
   lanesContainer: clsx('space-y-2'),
-  lane: clsx('relative', 'grid', 'h-10', 'grid-cols-7', 'gap-1')
+  lane: clsx('grid', 'h-10', 'grid-cols-7', 'gap-1'),
+  laneItem: (
+    isEndingInCurrentWeek: boolean,
+    isStartingInCurrentWeek: boolean
+  ) =>
+    clsx('p-2', {
+      'pr-0': !isEndingInCurrentWeek,
+      'pl-0': !isStartingInCurrentWeek
+    })
 }

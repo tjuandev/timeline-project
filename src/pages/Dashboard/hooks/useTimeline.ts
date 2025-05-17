@@ -2,7 +2,6 @@ import {
   eachDayOfInterval,
   endOfWeek,
   isWithinInterval,
-  parseISO,
   startOfWeek
 } from 'date-fns'
 
@@ -18,14 +17,14 @@ export const useTimeline = () => {
   const startDay = itemsSortedByStartDate[0]?.start ?? ''
 
   const firstWeekInterval = {
-    start: startOfWeek(parseISO(startDay)),
-    end: endOfWeek(parseISO(startDay))
+    start: startOfWeek(new Date(startDay)),
+    end: endOfWeek(new Date(startDay))
   }
 
   const weekIntervalDays = eachDayOfInterval(firstWeekInterval)
 
   const filteredItemsByWeekInterval = itemsSortedByStartDate.filter(item => {
-    const itemStart = parseISO(item.start)
+    const itemStart = new Date(item.start)
     return isWithinInterval(itemStart, firstWeekInterval)
   })
 
