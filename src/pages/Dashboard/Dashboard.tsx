@@ -1,10 +1,12 @@
 import { format } from 'date-fns'
 
+import { TimelineItem } from 'components/molecules/TimelineItem'
+
 import { useTimeline } from './hooks/useTimeline'
 
 import { S } from './styles'
 
-import { getWeekRangeFormatted } from './helpers'
+import { getItemRangeFormatted, getWeekRangeFormatted } from './helpers'
 
 export const Dashboard = () => {
   const { lanes, weekIntervalDays } = useTimeline()
@@ -24,9 +26,11 @@ export const Dashboard = () => {
           <div key={li} className={S.lane}>
             {lane.map(item => {
               return (
-                <div key={item.id}>
-                  {item.name} / {item.start} / {item.end}
-                </div>
+                <TimelineItem
+                  key={item.id}
+                  name={item.name}
+                  dateRange={getItemRangeFormatted(item.start, item.end)}
+                />
               )
             })}
           </div>
