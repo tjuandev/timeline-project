@@ -55,7 +55,7 @@ export const Dashboard = () => {
                   <TimelineItem
                     name={item.name}
                     dateRange={getItemRangeFormatted(item.start, item.end)}
-                    color="red"
+                    color={item.color}
                     endingPos={(() => {
                       if (isEndingInCurrentWeek) return 'right'
                       if (isStartingInCurrentWeek) return 'left'

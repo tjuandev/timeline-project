@@ -12,24 +12,28 @@ import type { TimelineItem } from '../types'
 export const useTimeline = () => {
   const itemsSortedByStartDate = TIMELINE_ITEMS.sort(
     (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
-  )
+  ).map(item => ({
+    ...item,
+    start: new Date(item.start),
+    end: new Date(item.end)
+  }))
 
   const startDay = itemsSortedByStartDate[0]?.start ?? ''
 
   const firstWeekInterval = {
-    start: startOfWeek(new Date(startDay)),
-    end: endOfWeek(new Date(startDay))
+    start: startOfWeek(startDay),
+    end: endOfWeek(startDay)
   }
 
   const weekIntervalDays = eachDayOfInterval(firstWeekInterval)
 
   const filteredItemsByWeekInterval = itemsSortedByStartDate.filter(item => {
-    const itemStart = new Date(item.start)
+    const itemStart = item.start
     return isWithinInterval(itemStart, firstWeekInterval)
   })
 
-  const generateTimelineLanes = (): TimelineItem[][] => {
-    const lanes: TimelineItem[][] = []
+  const generateTimelineLanes = (): Array<Array<TimelineItem<Date>>> => {
+    const lanes: Array<Array<TimelineItem<Date>>> = []
     for (const item of filteredItemsByWeekInterval) {
       let placed = false
 

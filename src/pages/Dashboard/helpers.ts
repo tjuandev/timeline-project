@@ -19,6 +19,6 @@ export const getWeekRangeFormatted = (
   return `${format(firstDay, getYear(firstDay) !== getYear(lastDay) ? 'MMM d, yyyy' : 'MMM d')} - ${format(lastDay, 'MMM d, yyyy')}`
 }
 
-export const getItemRangeFormatted = (start: string, end: string) => {
+export const getItemRangeFormatted = (start: Date, end: Date) => {
   return `${format(start, COLUMNS_AND_ITEM_DATE_FORMAT)} - ${format(end, COLUMNS_AND_ITEM_DATE_FORMAT)}`
 }
