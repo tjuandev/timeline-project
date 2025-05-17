@@ -1,5 +1,7 @@
+import clsx from 'clsx'
 import { format } from 'date-fns'
 
+import { Paginator } from 'components/molecules/Paginator'
 import { TimelineItem } from 'components/molecules/TimelineItem'
 
 import { COLUMNS_AND_ITEM_DATE_FORMAT } from './constants'
@@ -11,11 +13,18 @@ import { S } from './styles'
 import { getItemRangeFormatted, getWeekRangeFormatted } from './helpers'
 
 export const Dashboard = () => {
-  const { lanes, weekIntervalDays } = useTimeline()
+  const { lanes, weekIntervalDays, onPreviousClick, onNextClick } =
+    useTimeline()
 
   return (
     <div>
-      <h1>{getWeekRangeFormatted(weekIntervalDays)}</h1>
+      <div className={clsx('flex', 'items-center', 'justify-between')}>
+        <h1>{getWeekRangeFormatted(weekIntervalDays)}</h1>
+        <Paginator
+          onPreviousClick={onPreviousClick}
+          onNextClick={onNextClick}
+        />
+      </div>
       <div className={S.columnsContainer}>
         {weekIntervalDays.map(day => (
           <div key={day.toISOString()} className={S.column}>

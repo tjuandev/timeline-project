@@ -1,4 +1,7 @@
+import { useState } from 'react'
+
 import {
+  addDays,
   eachDayOfInterval,
   endOfWeek,
   isWithinInterval,
@@ -10,6 +13,17 @@ import { TIMELINE_ITEMS } from '../constants'
 import type { TimelineItem } from '../types'
 
 export const useTimeline = () => {
+  // NOTE -> Pagination logic maybe move to a separate hook
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const onPreviousClick = () => {
+    setCurrentPage(currentPage - 1)
+  }
+
+  const onNextClick = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
   const itemsSortedByStartDate = TIMELINE_ITEMS.sort(
     (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
   ).map(item => ({
@@ -21,8 +35,8 @@ export const useTimeline = () => {
   const startDay = itemsSortedByStartDate[0]?.start ?? ''
 
   const firstWeekInterval = {
-    start: startOfWeek(startDay),
-    end: endOfWeek(startDay)
+    start: startOfWeek(addDays(startDay, currentPage * 7)),
+    end: endOfWeek(addDays(startDay, currentPage * 7))
   }
 
   const weekIntervalDays = eachDayOfInterval(firstWeekInterval)
@@ -59,6 +73,8 @@ export const useTimeline = () => {
 
   return {
     lanes,
-    weekIntervalDays
+    weekIntervalDays,
+    onPreviousClick,
+    onNextClick
   }
 }
