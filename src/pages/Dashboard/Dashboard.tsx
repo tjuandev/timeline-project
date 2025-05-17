@@ -2,6 +2,8 @@ import { format } from 'date-fns'
 
 import { TimelineItem } from 'components/molecules/TimelineItem'
 
+import { COLUMNS_AND_ITEM_DATE_FORMAT } from './constants'
+
 import { useTimeline } from './hooks/useTimeline'
 
 import { S } from './styles'
@@ -17,7 +19,7 @@ export const Dashboard = () => {
       <div className={S.columnsContainer}>
         {weekIntervalDays.map(day => (
           <div key={day.toISOString()} className={S.column}>
-            {format(day, 'EEE d')}
+            {format(day, COLUMNS_AND_ITEM_DATE_FORMAT)}
           </div>
         ))}
       </div>

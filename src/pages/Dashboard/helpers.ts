@@ -1,5 +1,7 @@
 import { format, getYear, type EachDayOfIntervalResult } from 'date-fns'
 
+import { COLUMNS_AND_ITEM_DATE_FORMAT } from './constants'
+
 export const getWeekRangeFormatted = (
   interval: EachDayOfIntervalResult<
     {
@@ -18,5 +20,5 @@ export const getWeekRangeFormatted = (
 }
 
 export const getItemRangeFormatted = (start: string, end: string) => {
-  return `${format(start, 'EEE d')} - ${format(end, 'EEE d')}`
+  return `${format(start, COLUMNS_AND_ITEM_DATE_FORMAT)} - ${format(end, COLUMNS_AND_ITEM_DATE_FORMAT)}`
 }

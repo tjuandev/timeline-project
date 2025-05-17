@@ -1,3 +1,5 @@
+export const COLUMNS_AND_ITEM_DATE_FORMAT = 'EEE dd'
+
 // REVIEW -> Remember to remove this comment when improving this mock data
 // This guy can be moved to mock.ts
 /* eslint-disable sonarjs/no-duplicate-string */
