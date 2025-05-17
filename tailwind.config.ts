@@ -5,6 +5,13 @@ const config: Config = {
     './src/**/*.{js,ts,jsx,tsx}',
     './index.html'
   ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+      },
+    },
+  },
 }
 
 export default config
