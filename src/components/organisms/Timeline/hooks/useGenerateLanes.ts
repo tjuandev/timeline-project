@@ -2,11 +2,12 @@ import { useMemo } from 'react'
 
 import { areIntervalsOverlapping } from 'date-fns'
 
-import { type TimelineItem, type UseTimelineItemsProps } from '../types'
+import { type LaneItem, type UseTimelineItemsProps } from '../types'
 
 export const useGenerateLanes = ({
   items,
-  weekInterval
+  weekInterval,
+  weekIntervalDays
 }: UseTimelineItemsProps) => {
   const filteredItemsByWeekInterval = useMemo(() => {
     return items
@@ -21,23 +22,43 @@ export const useGenerateLanes = ({
       })
   }, [items, weekInterval])
 
-  const generateLanes = (): Array<Array<TimelineItem<Date>>> => {
-    const lanes: Array<Array<TimelineItem<Date>>> = []
+  const generateLanes = (): LaneItem[][] => {
+    const lanes: LaneItem[][] = []
     for (const item of filteredItemsByWeekInterval) {
       let placed = false
+
+      const columnStart = weekIntervalDays.findIndex(
+        day => day.toDateString() === new Date(item.start).toDateString()
+      )
+      const columnEnd = weekIntervalDays.findIndex(
+        day => day.toDateString() === new Date(item.end).toDateString()
+      )
+
+      const continuityTo = (() => {
+        if (columnStart === -1) return 'left'
+        if (columnEnd === -1) return 'right'
+        return 'both'
+      })()
+
+      const laneItem: LaneItem = {
+        ...item,
+        columnStart: columnStart === -1 ? 1 : columnStart + 1,
+        columnEnd: columnEnd === -1 ? 8 : columnEnd + 2,
+        continuityTo
+      }
 
       for (const lane of lanes) {
         const last = lane[lane.length - 1]
 
         if (new Date(item.start) > new Date(last?.end ?? '')) {
-          lane.push(item)
+          lane.push(laneItem)
           placed = true
           break
         }
       }
 
       if (!placed) {
-        lanes.push([item])
+        lanes.push([laneItem])
       }
     }
 

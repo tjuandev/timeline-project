@@ -5,21 +5,19 @@ import { TimelineItem } from 'components/molecules/TimelineItem'
 import { S } from '../styles'
 
 import { type LanesProps } from '../types'
+import { ItemPopoverContent } from './ItemPopoverContent'
 
-export const Lanes = ({ lanes, weekIntervalDays }: LanesProps) => {
+export const Lanes = ({ lanes }: LanesProps) => {
   return (
     <div className={S.lanesContainer}>
       {lanes.map(lane =>
-        lane.map(item => {
-          const laneColumnStart = weekIntervalDays.findIndex(
-            day => day.toDateString() === new Date(item.start).toDateString()
+        lane.map(({ columnStart, columnEnd, continuityTo, ...item }) => {
+          const hasStartedOnPreviousWeek = ['left', 'both'].includes(
+            continuityTo ?? ''
           )
-          const laneColumnEnd = weekIntervalDays.findIndex(
-            day => day.toDateString() === new Date(item.end).toDateString()
+          const hasContinuityOnNextWeek = ['right', 'both'].includes(
+            continuityTo ?? ''
           )
-
-          const hasStartedOnPreviousWeek = laneColumnStart === -1
-          const hasContinuityOnNextWeek = laneColumnEnd === -1
 
           return (
             <div
@@ -29,10 +27,8 @@ export const Lanes = ({ lanes, weekIntervalDays }: LanesProps) => {
               )}
               key={item.id}
               style={{
-                gridColumnStart: hasStartedOnPreviousWeek
-                  ? 1
-                  : laneColumnStart + 1,
-                gridColumnEnd: hasContinuityOnNextWeek ? 8 : laneColumnEnd + 2
+                gridColumnStart: columnStart,
+                gridColumnEnd: columnEnd
               }}
             >
               <TimelineItem
@@ -46,6 +42,13 @@ export const Lanes = ({ lanes, weekIntervalDays }: LanesProps) => {
                   if (hasStartedOnPreviousWeek) return 'left'
                   return undefined
                 })()}
+                popoverContent={
+                  <ItemPopoverContent
+                    name={item.name}
+                    dateRange={getItemRangeFormatted(item.start, item.end)}
+                    onEditName={() => {}}
+                  />
+                }
               />
             </div>
           )

@@ -24,10 +24,22 @@ export type UseTimelineItemsProps = {
     start: Date
     end: Date
   }
+  weekIntervalDays: WeekIntervalDays
   items: TimelineItem[]
 }
 
 export type LanesProps = {
-  lanes: Array<Array<TimelineItem<Date>>>
-  weekIntervalDays: WeekIntervalDays
+  lanes: LaneItem[][]
+}
+
+export type ItemPopoverProps = {
+  name: string
+  dateRange: string
+  onEditName: (name: string) => void
+}
+
+export type LaneItem = TimelineItem<Date> & {
+  columnStart: number
+  columnEnd: number
+  continuityTo: TimelineItemProps['continuityTo']
 }

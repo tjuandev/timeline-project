@@ -21,13 +21,14 @@ export const Timeline = ({ date, items }: TimelineProps) => {
 
   const { lanes } = useGenerateLanes({
     weekInterval,
-    items
+    items,
+    weekIntervalDays
   })
 
   return (
     <div>
       <Header weekIntervalDays={weekIntervalDays} />
-      <Lanes lanes={lanes} weekIntervalDays={weekIntervalDays} />
+      <Lanes lanes={lanes} />
     </div>
   )
 }
