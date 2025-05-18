@@ -12,7 +12,9 @@ export const TimelineItem = ({
 }: TimelineItemProps) => {
   return (
     <Button className={S.container({ color, endingPos })}>
-      <span className={S.name}>{name}</span>
+      <span className={S.name} title={name}>
+        {name}
+      </span>
       <small className={S.dateRange}>{dateRange}</small>
     </Button>
   )

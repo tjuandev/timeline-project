@@ -4,7 +4,7 @@ import clsx from 'clsx'
 const columnVariants = cva(
   clsx(
     'flex',
-    'h-12',
+    'h-14',
     'w-full',
     'flex-col',
     'items-start',
@@ -40,6 +40,6 @@ const columnVariants = cva(
 
 export const S = {
   container: columnVariants,
-  name: clsx('text-sm', 'font-normal'),
+  name: clsx('text-sm', 'font-normal', 'truncate', 'w-full', 'text-left'),
   dateRange: clsx('text-xs', 'text-gray-500', 'font-light')
 }
