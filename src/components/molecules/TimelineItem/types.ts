@@ -6,5 +6,5 @@ export interface TimelineItemProps {
   name: string
   dateRange: string
   color?: VariantProps<typeof S.container>['color']
-  endingPos?: VariantProps<typeof S.container>['endingPos']
+  continuityTo?: VariantProps<typeof S.container>['continuityTo']
 }

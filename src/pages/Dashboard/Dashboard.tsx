@@ -17,7 +17,7 @@ export const Dashboard = () => {
     useTimeline()
 
   return (
-    <div className={S.container}>
+    <div>
       <div className={clsx('flex', 'items-center', 'justify-between')}>
         <h1>{getWeekRangeFormatted(weekIntervalDays)}</h1>
         <Paginator
@@ -68,9 +68,9 @@ export const Dashboard = () => {
                   name={item.name}
                   dateRange={getItemRangeFormatted(item.start, item.end)}
                   color={item.color}
-                  endingPos={(() => {
+                  continuityTo={(() => {
                     if (hasContinuityOnNextWeek && hasStartedOnPreviousWeek)
-                      return 'center'
+                      return 'both'
                     if (hasContinuityOnNextWeek) return 'right'
                     if (hasStartedOnPreviousWeek) return 'left'
                     return undefined

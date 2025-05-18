@@ -26,10 +26,10 @@ const columnVariants = cva(
         gray: 'border-gray-500/90 bg-gray-200 hover:bg-gray-300/80',
         purple: 'border-purple-500/90 bg-purple-200 hover:bg-purple-300/80'
       },
-      endingPos: {
+      continuityTo: {
         right: clsx('rounded-r-none'),
         left: clsx('rounded-l-none'),
-        center: clsx('rounded-none')
+        both: clsx('rounded-none')
       }
     },
     defaultVariants: {
