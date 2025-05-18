@@ -10,7 +10,7 @@ export type TimelineItem<T extends string | Date = string> = {
 
 type WeekIntervalDays = Date[]
 
-export type HeaderProps = {
+export type WeekHeaderProps = {
   weekIntervalDays: WeekIntervalDays
 }
 

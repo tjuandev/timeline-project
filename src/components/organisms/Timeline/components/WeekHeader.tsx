@@ -4,9 +4,9 @@ import { COLUMNS_AND_ITEM_DATE_FORMAT } from '../constants'
 
 import { S } from '../styles'
 
-import { type HeaderProps } from '../types'
+import { type WeekHeaderProps } from '../types'
 
-export const Header = ({ weekIntervalDays }: HeaderProps) => {
+export const WeekHeader = ({ weekIntervalDays }: WeekHeaderProps) => {
   return (
     <div className={S.header}>
       {weekIntervalDays.map(day => (

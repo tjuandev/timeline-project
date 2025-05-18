@@ -4,8 +4,8 @@ import { eachDayOfInterval, endOfWeek, startOfWeek } from 'date-fns'
 
 import { useGenerateLanes } from './hooks/useGenerateLanes'
 
-import { Header } from './components/Header'
 import { Lanes } from './components/Lanes'
+import { WeekHeader } from './components/WeekHeader'
 import { type TimelineProps } from './types'
 
 export const Timeline = ({
@@ -32,7 +32,7 @@ export const Timeline = ({
 
   return (
     <div>
-      <Header weekIntervalDays={weekIntervalDays} />
+      <WeekHeader weekIntervalDays={weekIntervalDays} />
       <Lanes
         lanes={lanes}
         onEditItem={onEditItem}
