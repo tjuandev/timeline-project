@@ -1,9 +1,12 @@
+import { useRef, useState } from 'react'
+
 import { PopoverClose } from '@radix-ui/react-popover'
 import clsx from 'clsx'
 import { format } from 'date-fns'
-import { Pencil, X } from 'lucide-react'
+import { Check, Pencil, X } from 'lucide-react'
 
 import { Button } from 'components/atoms/Button'
+import { Input } from 'components/atoms/Input'
 import { Paginator } from 'components/molecules/Paginator'
 import { PopoverContent, Popover } from 'components/molecules/Popover'
 import { TimelineItem } from 'components/molecules/TimelineItem'
@@ -22,8 +25,13 @@ export const Dashboard = () => {
     weekIntervalDays,
     onPreviousClick,
     onNextClick,
-    onContinuityClick
+    onContinuityClick,
+    onEditItem
   } = useTimeline()
+
+  const [isEditing, setIsEditing] = useState(false)
+
+  const editInputRef = useRef<HTMLInputElement>(null)
 
   return (
     <div>
@@ -90,9 +98,40 @@ export const Dashboard = () => {
                   <PopoverContent side="bottom" align="start">
                     <div className={S.popoverContent}>
                       <div className={S.popoverHeader}>
-                        <h4 className={S.popoverTitle}>{item.name}</h4>
-                        <Button variant="ghost" size="icon">
-                          <Pencil />
+                        <h4 className={S.popoverTitle}>
+                          {isEditing ? (
+                            <Input
+                              placeholder={item.name}
+                              ref={editInputRef}
+                              className="h-[28px]"
+                              onBlur={() => {
+                                setIsEditing(false)
+                              }}
+                            />
+                          ) : (
+                            item.name
+                          )}
+                        </h4>
+                        <Button
+                          className={isEditing ? '' : 'edit-button'}
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => {
+                            setIsEditing(prev => !prev)
+                            onEditItem(
+                              item,
+                              editInputRef.current?.value
+                                ? editInputRef.current?.value
+                                : item.name
+                            )
+                            if (!isEditing) {
+                              setTimeout(() => {
+                                editInputRef.current?.focus()
+                              }, 0)
+                            }
+                          }}
+                        >
+                          {isEditing ? <Check /> : <Pencil />}
                         </Button>
                       </div>
                       <p className={S.popoverDateRange}>

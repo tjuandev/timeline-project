@@ -32,7 +32,15 @@ export const S = {
     'hover:text-gray-800'
   ),
   popoverContent: clsx('flex', 'flex-col'),
-  popoverHeader: clsx('flex', 'items-center', 'gap-1'),
+  popoverHeader: clsx(
+    'flex',
+    'items-center',
+    'gap-1',
+    '[&:hover_.edit-button]:opacity-100',
+    '[&_.edit-button]:opacity-0',
+    '[&_.edit-button]:transition-opacity',
+    '[&_.edit-button]:duration-300'
+  ),
   popoverTitle: clsx('text-lg', 'font-medium'),
   popoverDateRange: clsx('text-sm', 'text-gray-500')
 }

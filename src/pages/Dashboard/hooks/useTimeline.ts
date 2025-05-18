@@ -25,6 +25,13 @@ const itemsSortedByStartDate = TIMELINE_ITEMS.sort(
 export const useTimeline = () => {
   // NOTE -> Pagination logic maybe move to a separate hook
   const [currentPage, setCurrentPage] = useState(1)
+  const [timelineItems, setTimelineItems] = useState(itemsSortedByStartDate)
+
+  const onEditItem = (item: TimelineItem<Date>, name: string) => {
+    setTimelineItems(prev =>
+      prev.map(i => (i.id === item.id ? { ...i, name } : i))
+    )
+  }
 
   const onPreviousClick = () => {
     setCurrentPage(currentPage - 1)
@@ -43,7 +50,7 @@ export const useTimeline = () => {
     setCurrentPage(currentPage + 1)
   }
 
-  const startDay = itemsSortedByStartDate[0]?.start ?? ''
+  const startDay = timelineItems[0]?.start ?? ''
 
   const weekInterval = useMemo(
     () => ({
@@ -57,10 +64,10 @@ export const useTimeline = () => {
 
   const filteredItemsByWeekInterval = useMemo(
     () =>
-      itemsSortedByStartDate.filter(({ start, end }) => {
+      timelineItems.filter(({ start, end }) => {
         return areIntervalsOverlapping(weekInterval, { start, end })
       }),
-    [weekInterval]
+    [weekInterval, timelineItems]
   )
 
   const generateTimelineLanes = (): Array<Array<TimelineItem<Date>>> => {
@@ -93,6 +100,7 @@ export const useTimeline = () => {
     weekIntervalDays,
     onPreviousClick,
     onNextClick,
-    onContinuityClick
+    onContinuityClick,
+    onEditItem
   }
 }
