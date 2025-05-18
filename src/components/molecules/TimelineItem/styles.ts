@@ -1,10 +1,9 @@
 import { cva } from 'class-variance-authority'
 import clsx from 'clsx'
 
-const columnVariants = cva(
+const mainButtonVariants = cva(
   clsx(
     'flex',
-    'h-14',
     'w-full',
     'flex-col',
     'items-start',
@@ -13,7 +12,8 @@ const columnVariants = cva(
     'border-l-4',
     'px-4',
     'text-gray-800',
-    'shadow-none'
+    'shadow-none',
+    'h-full'
   ),
   {
     variants: {
@@ -28,8 +28,37 @@ const columnVariants = cva(
       },
       continuityTo: {
         right: clsx('rounded-r-none'),
-        left: clsx('rounded-l-none'),
-        both: clsx('rounded-none')
+        left: clsx('rounded-l-none', 'border-none'),
+        both: clsx('rounded-none', 'border-none')
+      }
+    },
+    defaultVariants: {
+      color: 'red'
+    }
+  }
+)
+
+const continuityButtonVariants = cva(
+  clsx(
+    'h-full',
+    'rounded-none',
+    'p-0',
+    'hover:bg-[inherit]',
+    'hover:text-gray-800'
+  ),
+  {
+    variants: {
+      color: {
+        red: 'bg-red-500/90',
+        yellow: 'bg-yellow-500/80',
+        green: 'bg-green-500/90',
+        blue: 'bg-blue-500/90',
+        lightBlue: 'bg-sky-500/90',
+        gray: 'bg-gray-500/90',
+        purple: 'bg-purple-500/90'
+      },
+      reverse: {
+        true: clsx('rotate-180')
       }
     },
     defaultVariants: {
@@ -39,7 +68,10 @@ const columnVariants = cva(
 )
 
 export const S = {
-  container: columnVariants,
+  mainButtonContainer: mainButtonVariants,
   name: clsx('text-sm', 'font-normal', 'truncate', 'w-full', 'text-left'),
-  dateRange: clsx('text-xs', 'text-gray-500', 'font-light')
+  dateRange: clsx('text-xs', 'text-gray-500', 'font-light'),
+  continuityBtn: continuityButtonVariants,
+  continuityButtonIcon: clsx('w-4', 'h-4'),
+  container: clsx('flex', 'h-14')
 }

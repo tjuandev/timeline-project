@@ -8,6 +8,8 @@ import {
   startOfWeek
 } from 'date-fns'
 
+import type { OnContinuityClick } from 'components/molecules/TimelineItem/types'
+
 import { TIMELINE_ITEMS } from '../constants'
 
 import type { TimelineItem } from '../types'
@@ -29,6 +31,15 @@ export const useTimeline = () => {
   }
 
   const onNextClick = () => {
+    setCurrentPage(currentPage + 1)
+  }
+
+  const onContinuityClick: OnContinuityClick = pos => {
+    if (pos === 'left') {
+      setCurrentPage(currentPage - 1)
+      return
+    }
+
     setCurrentPage(currentPage + 1)
   }
 
@@ -81,6 +92,7 @@ export const useTimeline = () => {
     lanes,
     weekIntervalDays,
     onPreviousClick,
-    onNextClick
+    onNextClick,
+    onContinuityClick
   }
 }

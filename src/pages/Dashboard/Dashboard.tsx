@@ -13,8 +13,13 @@ import { S } from './styles'
 import { getItemRangeFormatted, getWeekRangeFormatted } from './helpers'
 
 export const Dashboard = () => {
-  const { lanes, weekIntervalDays, onPreviousClick, onNextClick } =
-    useTimeline()
+  const {
+    lanes,
+    weekIntervalDays,
+    onPreviousClick,
+    onNextClick,
+    onContinuityClick
+  } = useTimeline()
 
   return (
     <div>
@@ -75,6 +80,7 @@ export const Dashboard = () => {
                     if (hasStartedOnPreviousWeek) return 'left'
                     return undefined
                   })()}
+                  onContinuityClick={onContinuityClick}
                 />
               </div>
             )

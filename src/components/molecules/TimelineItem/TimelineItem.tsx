@@ -1,21 +1,59 @@
+import { ChevronRightIcon } from 'lucide-react'
+
 import { Button } from 'components/atoms/Button'
 
 import { S } from './styles'
 
-import { type TimelineItemProps } from './types'
+import { type ContinuityBtnProps, type TimelineItemProps } from './types'
+
+const ContinuityButton = ({
+  color,
+  position,
+  onContinuityClick
+}: ContinuityBtnProps) => {
+  return (
+    <Button
+      className={S.continuityBtn({ color, reverse: position === 'left' })}
+      onClick={() => {
+        onContinuityClick?.(position)
+      }}
+    >
+      <ChevronRightIcon className={S.continuityButtonIcon} />
+    </Button>
+  )
+}
 
 export const TimelineItem = ({
   name,
   dateRange,
   color,
-  continuityTo
+  continuityTo,
+  onContinuityClick
 }: TimelineItemProps) => {
   return (
-    <Button className={S.container({ color, continuityTo })}>
-      <span className={S.name} title={name}>
-        {name}
-      </span>
-      <small className={S.dateRange}>{dateRange}</small>
-    </Button>
+    <div className={S.container}>
+      {['left', 'both'].includes(continuityTo ?? '') && (
+        <ContinuityButton
+          color={color}
+          position="left"
+          onContinuityClick={onContinuityClick}
+        />
+      )}
+
+      <Button className={S.mainButtonContainer({ color, continuityTo })}>
+        <span className={S.name} title={name}>
+          {name}
+        </span>
+        <small className={S.dateRange}>{dateRange}</small>
+      </Button>
+
+      {['right', 'both'].includes(continuityTo ?? '') && (
+        <ContinuityButton
+          color={color}
+          position="right"
+          onContinuityClick={onContinuityClick}
+        />
+      )}
+    </div>
   )
 }
