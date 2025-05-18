@@ -22,5 +22,17 @@ export const S = {
     clsx({
       'ml-[-12px]': hasContinuityOnNextWeek,
       'mr-[-12px]': hasStartedOnPreviousWeek
-    })
+    }),
+  popoverClose: clsx(
+    'absolute',
+    'top-[10px]',
+    'right-[10px]',
+    'p-2',
+    'text-gray-400',
+    'hover:text-gray-800'
+  ),
+  popoverContent: clsx('flex', 'flex-col'),
+  popoverHeader: clsx('flex', 'items-center', 'gap-1'),
+  popoverTitle: clsx('text-lg', 'font-medium'),
+  popoverDateRange: clsx('text-sm', 'text-gray-500')
 }

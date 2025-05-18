@@ -1,7 +1,11 @@
+import { PopoverClose } from '@radix-ui/react-popover'
 import clsx from 'clsx'
 import { format } from 'date-fns'
+import { Pencil, X } from 'lucide-react'
 
+import { Button } from 'components/atoms/Button'
 import { Paginator } from 'components/molecules/Paginator'
+import { PopoverContent, Popover } from 'components/molecules/Popover'
 import { TimelineItem } from 'components/molecules/TimelineItem'
 
 import { COLUMNS_AND_ITEM_DATE_FORMAT } from './constants'
@@ -69,19 +73,43 @@ export const Dashboard = () => {
                   gridColumnEnd: hasContinuityOnNextWeek ? 8 : laneColumnEnd + 2
                 }}
               >
-                <TimelineItem
-                  name={item.name}
-                  dateRange={getItemRangeFormatted(item.start, item.end)}
-                  color={item.color}
-                  continuityTo={(() => {
-                    if (hasContinuityOnNextWeek && hasStartedOnPreviousWeek)
-                      return 'both'
-                    if (hasContinuityOnNextWeek) return 'right'
-                    if (hasStartedOnPreviousWeek) return 'left'
-                    return undefined
-                  })()}
-                  onContinuityClick={onContinuityClick}
-                />
+                <Popover>
+                  <TimelineItem
+                    name={item.name}
+                    dateRange={getItemRangeFormatted(item.start, item.end)}
+                    color={item.color}
+                    continuityTo={(() => {
+                      if (hasContinuityOnNextWeek && hasStartedOnPreviousWeek)
+                        return 'both'
+                      if (hasContinuityOnNextWeek) return 'right'
+                      if (hasStartedOnPreviousWeek) return 'left'
+                      return undefined
+                    })()}
+                    onContinuityClick={onContinuityClick}
+                  />
+                  <PopoverContent side="bottom" align="start">
+                    <div className={S.popoverContent}>
+                      <div className={S.popoverHeader}>
+                        <h4 className={S.popoverTitle}>{item.name}</h4>
+                        <Button variant="ghost" size="icon">
+                          <Pencil />
+                        </Button>
+                      </div>
+                      <p className={S.popoverDateRange}>
+                        {getItemRangeFormatted(item.start, item.end)}
+                      </p>
+                    </div>
+                    <PopoverClose asChild>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className={S.popoverClose}
+                      >
+                        <X />
+                      </Button>
+                    </PopoverClose>
+                  </PopoverContent>
+                </Popover>
               </div>
             )
           })

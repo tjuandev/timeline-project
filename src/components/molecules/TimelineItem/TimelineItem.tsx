@@ -4,6 +4,7 @@ import { Button } from 'components/atoms/Button'
 
 import { S } from './styles'
 
+import { PopoverTrigger } from '../Popover'
 import { type ContinuityBtnProps, type TimelineItemProps } from './types'
 
 const ContinuityButton = ({
@@ -40,12 +41,14 @@ export const TimelineItem = ({
         />
       )}
 
-      <Button className={S.mainButtonContainer({ color, continuityTo })}>
-        <span className={S.name} title={name}>
-          {name}
-        </span>
-        <small className={S.dateRange}>{dateRange}</small>
-      </Button>
+      <PopoverTrigger asChild>
+        <Button className={S.mainButtonContainer({ color, continuityTo })}>
+          <span className={S.name} title={name}>
+            {name}
+          </span>
+          <small className={S.dateRange}>{dateRange}</small>
+        </Button>
+      </PopoverTrigger>
 
       {['right', 'both'].includes(continuityTo ?? '') && (
         <ContinuityButton
