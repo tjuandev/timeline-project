@@ -4,7 +4,7 @@ import { Button } from 'components/atoms/Button'
 
 import { S } from './styles'
 
-import { PopoverTrigger } from '../Popover'
+import { Popover, PopoverContent, PopoverTrigger } from '../Popover'
 import { type ContinuityBtnProps, type TimelineItemProps } from './types'
 
 const ContinuityButton = ({
@@ -29,34 +29,38 @@ export const TimelineItem = ({
   dateRange,
   color,
   continuityTo,
-  onContinuityClick
+  onContinuityClick,
+  popoverContent
 }: TimelineItemProps) => {
   return (
-    <div className={S.container}>
-      {['left', 'both'].includes(continuityTo ?? '') && (
-        <ContinuityButton
-          color={color}
-          position="left"
-          onContinuityClick={onContinuityClick}
-        />
-      )}
+    <Popover>
+      <div className={S.container}>
+        {['left', 'both'].includes(continuityTo ?? '') && (
+          <ContinuityButton
+            color={color}
+            position="left"
+            onContinuityClick={onContinuityClick}
+          />
+        )}
 
-      <PopoverTrigger asChild>
-        <Button className={S.mainButtonContainer({ color, continuityTo })}>
-          <span className={S.name} title={name}>
-            {name}
-          </span>
-          <small className={S.dateRange}>{dateRange}</small>
-        </Button>
-      </PopoverTrigger>
+        <PopoverTrigger asChild>
+          <Button className={S.mainButtonContainer({ color, continuityTo })}>
+            <span className={S.name} title={name}>
+              {name}
+            </span>
+            <small className={S.dateRange}>{dateRange}</small>
+          </Button>
+        </PopoverTrigger>
 
-      {['right', 'both'].includes(continuityTo ?? '') && (
-        <ContinuityButton
-          color={color}
-          position="right"
-          onContinuityClick={onContinuityClick}
-        />
-      )}
-    </div>
+        {['right', 'both'].includes(continuityTo ?? '') && (
+          <ContinuityButton
+            color={color}
+            position="right"
+            onContinuityClick={onContinuityClick}
+          />
+        )}
+      </div>
+      <PopoverContent>{popoverContent}</PopoverContent>
+    </Popover>
   )
 }

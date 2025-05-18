@@ -13,6 +13,7 @@ export interface TimelineItemProps {
   color?: MainButtonVariants['color']
   continuityTo?: MainButtonVariants['continuityTo']
   onContinuityClick?: OnContinuityClick
+  popoverContent?: React.ReactNode
 }
 
 export type ContinuityBtnProps = VariantProps<typeof S.continuityBtn> & {
