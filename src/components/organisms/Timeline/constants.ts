@@ -1,0 +1,1 @@
+export const COLUMNS_AND_ITEM_DATE_FORMAT = 'EEE dd'

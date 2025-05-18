@@ -101,6 +101,7 @@ export const useTimeline = () => {
     onPreviousClick,
     onNextClick,
     onContinuityClick,
-    onEditItem
+    onEditItem,
+    timelineItems
   }
 }

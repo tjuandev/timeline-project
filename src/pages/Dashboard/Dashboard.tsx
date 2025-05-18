@@ -10,6 +10,7 @@ import { Input } from 'components/atoms/Input'
 import { Paginator } from 'components/molecules/Paginator'
 import { PopoverContent, Popover } from 'components/molecules/Popover'
 import { TimelineItem } from 'components/molecules/TimelineItem'
+import { Timeline } from 'components/organisms/Timeline'
 
 import { COLUMNS_AND_ITEM_DATE_FORMAT } from './constants'
 
@@ -26,7 +27,8 @@ export const Dashboard = () => {
     onPreviousClick,
     onNextClick,
     onContinuityClick,
-    onEditItem
+    onEditItem,
+    timelineItems
   } = useTimeline()
 
   const [isEditing, setIsEditing] = useState(false)
@@ -154,6 +156,10 @@ export const Dashboard = () => {
           })
         )}
       </div>
+      <Timeline
+        date={timelineItems?.[0]?.start ?? new Date()}
+        items={timelineItems}
+      />
     </div>
   )
 }
