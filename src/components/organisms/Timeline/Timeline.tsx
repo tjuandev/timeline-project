@@ -8,7 +8,12 @@ import { Header } from './components/Header'
 import { Lanes } from './components/Lanes'
 import { type TimelineProps } from './types'
 
-export const Timeline = ({ date, items }: TimelineProps) => {
+export const Timeline = ({
+  date,
+  items,
+  onEditItem,
+  onClickContinuity
+}: TimelineProps) => {
   const weekInterval = useMemo(
     () => ({
       start: startOfWeek(date),
@@ -28,7 +33,11 @@ export const Timeline = ({ date, items }: TimelineProps) => {
   return (
     <div>
       <Header weekIntervalDays={weekIntervalDays} />
-      <Lanes lanes={lanes} />
+      <Lanes
+        lanes={lanes}
+        onEditItem={onEditItem}
+        onClickContinuity={onClickContinuity}
+      />
     </div>
   )
 }

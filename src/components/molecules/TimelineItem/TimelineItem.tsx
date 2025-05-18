@@ -10,13 +10,13 @@ import { type ContinuityBtnProps, type TimelineItemProps } from './types'
 const ContinuityButton = ({
   color,
   position,
-  onContinuityClick
+  onClickContinuity
 }: ContinuityBtnProps) => {
   return (
     <Button
       className={S.continuityBtn({ color, reverse: position === 'left' })}
       onClick={() => {
-        onContinuityClick?.(position)
+        onClickContinuity?.(position)
       }}
     >
       <ChevronRightIcon className={S.continuityButtonIcon} />
@@ -29,7 +29,7 @@ export const TimelineItem = ({
   dateRange,
   color,
   continuityTo,
-  onContinuityClick,
+  onClickContinuity,
   popoverContent
 }: TimelineItemProps) => {
   return (
@@ -39,7 +39,7 @@ export const TimelineItem = ({
           <ContinuityButton
             color={color}
             position="left"
-            onContinuityClick={onContinuityClick}
+            onClickContinuity={onClickContinuity}
           />
         )}
 
@@ -56,7 +56,7 @@ export const TimelineItem = ({
           <ContinuityButton
             color={color}
             position="right"
-            onContinuityClick={onContinuityClick}
+            onClickContinuity={onClickContinuity}
           />
         )}
       </div>

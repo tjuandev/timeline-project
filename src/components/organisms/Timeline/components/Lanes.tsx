@@ -7,11 +7,13 @@ import { S } from '../styles'
 import { type LanesProps } from '../types'
 import { ItemPopoverContent } from './ItemPopoverContent'
 
-export const Lanes = ({ lanes }: LanesProps) => {
+export const Lanes = ({ lanes, onEditItem, onClickContinuity }: LanesProps) => {
   return (
     <div className={S.lanesContainer}>
       {lanes.map(lane =>
-        lane.map(({ columnStart, columnEnd, continuityTo, ...item }) => {
+        lane.map(item => {
+          const { columnStart, columnEnd, continuityTo } = item
+
           const hasStartedOnPreviousWeek = ['left', 'both'].includes(
             continuityTo ?? ''
           )
@@ -42,11 +44,16 @@ export const Lanes = ({ lanes }: LanesProps) => {
                   if (hasStartedOnPreviousWeek) return 'left'
                   return undefined
                 })()}
+                onClickContinuity={position => {
+                  onClickContinuity?.(position)
+                }}
                 popoverContent={
                   <ItemPopoverContent
                     name={item.name}
                     dateRange={getItemRangeFormatted(item.start, item.end)}
-                    onEditName={() => {}}
+                    onEditName={name => {
+                      onEditItem(item, { name })
+                    }}
                   />
                 }
               />

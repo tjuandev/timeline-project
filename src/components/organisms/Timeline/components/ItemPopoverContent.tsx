@@ -20,7 +20,6 @@ export const ItemPopoverContent = ({
 
   return (
     <div>
-      {' '}
       <div className={S.popoverContent}>
         <div className={S.popoverHeader}>
           <h4 className={S.popoverTitle}>

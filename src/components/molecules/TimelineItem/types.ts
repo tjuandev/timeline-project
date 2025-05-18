@@ -5,18 +5,18 @@ import type { S } from './styles'
 type MainButtonVariants = VariantProps<typeof S.mainButtonContainer>
 
 type Position = 'left' | 'right'
-export type OnContinuityClick = (position: Position) => void
+export type OnClickContinuity = (position: Position) => void
 
 export interface TimelineItemProps {
   name: string
   dateRange: string
   color?: MainButtonVariants['color']
   continuityTo?: MainButtonVariants['continuityTo']
-  onContinuityClick?: OnContinuityClick
+  onClickContinuity?: OnClickContinuity
   popoverContent?: React.ReactNode
 }
 
 export type ContinuityBtnProps = VariantProps<typeof S.continuityBtn> & {
   position: Position
-  onContinuityClick?: TimelineItemProps['onContinuityClick']
+  onClickContinuity?: TimelineItemProps['onClickContinuity']
 }

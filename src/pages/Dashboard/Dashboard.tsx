@@ -95,7 +95,7 @@ export const Dashboard = () => {
                       if (hasStartedOnPreviousWeek) return 'left'
                       return undefined
                     })()}
-                    onContinuityClick={onContinuityClick}
+                    onClickContinuity={onContinuityClick}
                   />
                   <PopoverContent side="bottom" align="start">
                     <div className={S.popoverContent}>
@@ -159,6 +159,8 @@ export const Dashboard = () => {
       <Timeline
         date={timelineItems?.[0]?.start ?? new Date()}
         items={timelineItems}
+        onEditItem={() => {}}
+        onClickContinuity={onContinuityClick}
       />
     </div>
   )

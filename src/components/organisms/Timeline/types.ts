@@ -17,7 +17,8 @@ export type HeaderProps = {
 export type TimelineProps = {
   date: Date
   items: TimelineItem[]
-}
+  onEditItem: (item: LaneItem, values: Pick<TimelineItem, 'name'>) => void
+} & Pick<TimelineItemProps, 'onClickContinuity'>
 
 export type UseTimelineItemsProps = {
   weekInterval: {
@@ -30,7 +31,7 @@ export type UseTimelineItemsProps = {
 
 export type LanesProps = {
   lanes: LaneItem[][]
-}
+} & Pick<TimelineProps, 'onClickContinuity' | 'onEditItem'>
 
 export type ItemPopoverProps = {
   name: string
