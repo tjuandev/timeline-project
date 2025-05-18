@@ -45,3 +45,11 @@ export type LaneItem = TimelineItem<Date> & {
   columnEnd: number
   continuityTo: TimelineItemProps['continuityTo']
 }
+
+export type HeaderProps = {
+  weekIntervalDays: WeekIntervalDays
+  onPreviousClick: () => void
+  onNextClick: () => void
+  onTodayClick: () => void
+  isToday: boolean
+}

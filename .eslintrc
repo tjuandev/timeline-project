@@ -119,7 +119,8 @@
     "eslint-disable-next-line": "off",
     "react/display-name": "off",
     "prettier/prettier": "error",
-    "import/no-named-as-default": "off"
+    "import/no-named-as-default": "off",
+    "sonarjs/no-duplicate-string": "off"
   },
   "overrides": [
     {

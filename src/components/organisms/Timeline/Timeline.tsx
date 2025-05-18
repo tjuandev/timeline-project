@@ -5,12 +5,20 @@ import { eachDayOfInterval, endOfWeek, startOfWeek } from 'date-fns'
 import { useGenerateLanes } from './hooks/useGenerateLanes'
 import { usePaginateTimeline } from './hooks/usePaginateTimeline'
 
+import { Header } from './components/Header'
 import { Lanes } from './components/Lanes'
 import { WeekHeader } from './components/WeekHeader'
 import { type TimelineProps } from './types'
 
 export const Timeline = ({ initialDate, items, onEditItem }: TimelineProps) => {
-  const { date, onClickContinuity } = usePaginateTimeline(initialDate)
+  const {
+    date,
+    onClickContinuity,
+    onPreviousClick,
+    onNextClick,
+    onTodayClick,
+    isToday
+  } = usePaginateTimeline(initialDate)
 
   const weekInterval = useMemo(
     () => ({
@@ -30,12 +38,21 @@ export const Timeline = ({ initialDate, items, onEditItem }: TimelineProps) => {
 
   return (
     <div>
-      <WeekHeader weekIntervalDays={weekIntervalDays} />
-      <Lanes
-        lanes={lanes}
-        onEditItem={onEditItem}
-        onClickContinuity={onClickContinuity}
+      <Header
+        weekIntervalDays={weekIntervalDays}
+        onPreviousClick={onPreviousClick}
+        onNextClick={onNextClick}
+        onTodayClick={onTodayClick}
+        isToday={isToday}
       />
+      <div>
+        <WeekHeader weekIntervalDays={weekIntervalDays} />
+        <Lanes
+          lanes={lanes}
+          onEditItem={onEditItem}
+          onClickContinuity={onClickContinuity}
+        />
+      </div>
     </div>
   )
 }

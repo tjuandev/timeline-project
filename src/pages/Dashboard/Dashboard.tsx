@@ -17,7 +17,7 @@ export const Dashboard = () => {
   return (
     <div>
       <Timeline
-        initialDate={new Date(timelineItems?.[0]?.start || '')}
+        initialDate={new Date()}
         items={timelineItems}
         onEditItem={onEditItem}
       />

@@ -3,7 +3,10 @@ import clsx from 'clsx'
 const COLUMNS_GRID = 'grid-cols-7'
 
 export const S = {
-  header: clsx('grid', COLUMNS_GRID),
+  header: clsx('flex', 'justify-between', 'items-center', 'my-4'),
+  headerTitle: clsx('text-xl', 'font-normal'),
+  headerButtons: clsx('flex', 'gap-2'),
+  weekHeader: clsx('grid', COLUMNS_GRID),
   weekDay: clsx(
     'text-gray-400',
     'font-medium',
