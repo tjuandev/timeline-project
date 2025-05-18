@@ -35,9 +35,10 @@ export const useGenerateLanes = ({
       )
 
       const continuityTo = (() => {
+        if (columnStart === -1 && columnEnd === -1) return 'both'
         if (columnStart === -1) return 'left'
         if (columnEnd === -1) return 'right'
-        return 'both'
+        return null
       })()
 
       const laneItem: LaneItem = {

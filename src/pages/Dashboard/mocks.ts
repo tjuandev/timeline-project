@@ -1,11 +1,7 @@
-import type { TimelineItem } from './types'
-
-export const COLUMNS_AND_ITEM_DATE_FORMAT = 'EEE dd'
-
-// REVIEW -> Remember to remove this comment when improving this mock data
-// This guy can be moved to mock.ts
 /* eslint-disable sonarjs/no-duplicate-string */
-export const TIMELINE_ITEMS: TimelineItem[] = [
+import type { TimelineItem } from 'components/organisms/Timeline/types'
+
+export const TIMELINE_ITEMS_MOCK: TimelineItem[] = [
   {
     id: 1,
     name: 'First item',

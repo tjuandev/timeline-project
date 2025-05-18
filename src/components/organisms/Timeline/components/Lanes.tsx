@@ -1,9 +1,8 @@
-import { getItemRangeFormatted } from 'pages/Dashboard/helpers'
-
 import { TimelineItem } from 'components/molecules/TimelineItem'
 
 import { S } from '../styles'
 
+import { getItemRangeFormatted } from '../helpers'
 import { type LanesProps } from '../types'
 import { ItemPopoverContent } from './ItemPopoverContent'
 
