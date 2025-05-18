@@ -15,11 +15,11 @@ export const S = {
   lanesContainer: clsx('space-y-2'),
   lane: clsx('grid', 'h-10', 'grid-cols-7', 'gap-1'),
   laneItem: (
-    isEndingInCurrentWeek: boolean,
-    isStartingInCurrentWeek: boolean
+    hasContinuityOnNextWeek: boolean,
+    hasStartedOnPreviousWeek: boolean
   ) =>
     clsx('p-2', {
-      'pr-0': !isEndingInCurrentWeek,
-      'pl-0': !isStartingInCurrentWeek
+      'pr-0': hasContinuityOnNextWeek,
+      'pl-0': hasStartedOnPreviousWeek
     })
 }

@@ -44,21 +44,23 @@ export const Dashboard = () => {
                 day => day.toDateString() === new Date(item.end).toDateString()
               )
 
-              const isEndingInCurrentWeek = laneColumnEnd !== -1
-              const isStartingInCurrentWeek = laneColumnStart !== -1
+              const hasStartedOnPreviousWeek = laneColumnStart === -1
+              const hasContinuityOnNextWeek = laneColumnEnd === -1
 
               return (
                 <div
                   className={S.laneItem(
-                    isEndingInCurrentWeek,
-                    isStartingInCurrentWeek
+                    hasStartedOnPreviousWeek,
+                    hasContinuityOnNextWeek
                   )}
                   key={item.id}
                   style={{
-                    gridColumnStart: isStartingInCurrentWeek
-                      ? laneColumnStart + 1
-                      : 1,
-                    gridColumnEnd: isEndingInCurrentWeek ? laneColumnEnd + 1 : 8
+                    gridColumnStart: hasStartedOnPreviousWeek
+                      ? 1
+                      : laneColumnStart + 1,
+                    gridColumnEnd: hasContinuityOnNextWeek
+                      ? 8
+                      : laneColumnEnd + 2
                   }}
                 >
                   <TimelineItem
@@ -66,8 +68,10 @@ export const Dashboard = () => {
                     dateRange={getItemRangeFormatted(item.start, item.end)}
                     color={item.color}
                     endingPos={(() => {
-                      if (!isEndingInCurrentWeek) return 'right'
-                      if (!isStartingInCurrentWeek) return 'left'
+                      if (hasContinuityOnNextWeek && hasStartedOnPreviousWeek)
+                        return 'center'
+                      if (hasContinuityOnNextWeek) return 'right'
+                      if (hasStartedOnPreviousWeek) return 'left'
                       return undefined
                     })()}
                   />

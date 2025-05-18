@@ -4,14 +4,14 @@ import clsx from 'clsx'
 const columnVariants = cva(
   clsx(
     'flex',
-    'h-10',
+    'h-12',
     'w-full',
     'flex-col',
     'items-start',
     'gap-0',
     'rounded-md',
     'border-l-4',
-    'p-2',
+    'px-4',
     'text-gray-800',
     'shadow-none'
   ),
@@ -28,7 +28,8 @@ const columnVariants = cva(
       },
       endingPos: {
         right: clsx('rounded-r-none'),
-        left: clsx('rounded-l-none')
+        left: clsx('rounded-l-none'),
+        center: clsx('rounded-none')
       }
     },
     defaultVariants: {

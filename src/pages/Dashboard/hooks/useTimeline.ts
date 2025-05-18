@@ -1,16 +1,24 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import {
   addDays,
+  areIntervalsOverlapping,
   eachDayOfInterval,
   endOfWeek,
-  isWithinInterval,
   startOfWeek
 } from 'date-fns'
 
 import { TIMELINE_ITEMS } from '../constants'
 
 import type { TimelineItem } from '../types'
+
+const itemsSortedByStartDate = TIMELINE_ITEMS.sort(
+  (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+).map(item => ({
+  ...item,
+  start: new Date(item.start),
+  end: new Date(item.end)
+}))
 
 export const useTimeline = () => {
   // NOTE -> Pagination logic maybe move to a separate hook
@@ -24,30 +32,24 @@ export const useTimeline = () => {
     setCurrentPage(currentPage + 1)
   }
 
-  const itemsSortedByStartDate = TIMELINE_ITEMS.sort(
-    (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
-  ).map(item => ({
-    ...item,
-    start: new Date(item.start),
-    end: new Date(item.end)
-  }))
-
   const startDay = itemsSortedByStartDate[0]?.start ?? ''
 
-  const weekInterval = {
-    start: startOfWeek(addDays(startDay, (currentPage - 1) * 7)),
-    end: endOfWeek(addDays(startDay, (currentPage - 1) * 7))
-  }
+  const weekInterval = useMemo(
+    () => ({
+      start: startOfWeek(addDays(startDay, (currentPage - 1) * 7)),
+      end: endOfWeek(addDays(startDay, (currentPage - 1) * 7))
+    }),
+    [currentPage, startDay]
+  )
 
   const weekIntervalDays = eachDayOfInterval(weekInterval)
 
-  const filteredItemsByWeekInterval = itemsSortedByStartDate.filter(
-    ({ start, end }) => {
-      return (
-        isWithinInterval(start, weekInterval) ||
-        isWithinInterval(end, weekInterval)
-      )
-    }
+  const filteredItemsByWeekInterval = useMemo(
+    () =>
+      itemsSortedByStartDate.filter(({ start, end }) => {
+        return areIntervalsOverlapping(weekInterval, { start, end })
+      }),
+    [weekInterval]
   )
 
   const generateTimelineLanes = (): Array<Array<TimelineItem<Date>>> => {
