@@ -1,7 +1,9 @@
 import clsx from 'clsx'
 
+const COLUMNS_GRID = 'grid-cols-7'
+
 export const S = {
-  columnsContainer: clsx('grid', 'grid-cols-7'),
+  columnsContainer: clsx('grid', COLUMNS_GRID),
   column: clsx(
     'text-gray-400',
     'font-medium',
@@ -12,14 +14,13 @@ export const S = {
     'text-center',
     'text-sm'
   ),
-  lanesContainer: clsx('space-y-2'),
-  lane: clsx('grid', 'h-10', 'grid-cols-7', 'gap-1'),
+  lanesContainer: clsx('grid', COLUMNS_GRID, 'gap-y-4', 'gap-x-3', 'p-[12px]'),
   laneItem: (
     hasContinuityOnNextWeek: boolean,
     hasStartedOnPreviousWeek: boolean
   ) =>
-    clsx('p-2', {
-      'pr-0': hasContinuityOnNextWeek,
-      'pl-0': hasStartedOnPreviousWeek
+    clsx({
+      'ml-[-12px]': hasContinuityOnNextWeek,
+      'mr-[-12px]': hasStartedOnPreviousWeek
     })
 }

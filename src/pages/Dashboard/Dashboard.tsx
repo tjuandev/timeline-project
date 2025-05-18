@@ -17,7 +17,7 @@ export const Dashboard = () => {
     useTimeline()
 
   return (
-    <div>
+    <div className={S.container}>
       <div className={clsx('flex', 'items-center', 'justify-between')}>
         <h1>{getWeekRangeFormatted(weekIntervalDays)}</h1>
         <Paginator
@@ -32,54 +32,54 @@ export const Dashboard = () => {
           </div>
         ))}
       </div>
-      <div className={S.lanesContainer}>
-        {lanes.map((lane, li) => (
-          <div key={li} className={S.lane}>
-            {lane.map(item => {
-              const laneColumnStart = weekIntervalDays.findIndex(
-                day =>
-                  day.toDateString() === new Date(item.start).toDateString()
-              )
-              const laneColumnEnd = weekIntervalDays.findIndex(
-                day => day.toDateString() === new Date(item.end).toDateString()
-              )
+      <div
+        className={S.lanesContainer}
+        style={{
+          gridTemplateRows: `repeat(${lanes.length}, 1fr)`
+        }}
+      >
+        {lanes.map(lane =>
+          lane.map(item => {
+            const laneColumnStart = weekIntervalDays.findIndex(
+              day => day.toDateString() === new Date(item.start).toDateString()
+            )
+            const laneColumnEnd = weekIntervalDays.findIndex(
+              day => day.toDateString() === new Date(item.end).toDateString()
+            )
 
-              const hasStartedOnPreviousWeek = laneColumnStart === -1
-              const hasContinuityOnNextWeek = laneColumnEnd === -1
+            const hasStartedOnPreviousWeek = laneColumnStart === -1
+            const hasContinuityOnNextWeek = laneColumnEnd === -1
 
-              return (
-                <div
-                  className={S.laneItem(
-                    hasStartedOnPreviousWeek,
-                    hasContinuityOnNextWeek
-                  )}
-                  key={item.id}
-                  style={{
-                    gridColumnStart: hasStartedOnPreviousWeek
-                      ? 1
-                      : laneColumnStart + 1,
-                    gridColumnEnd: hasContinuityOnNextWeek
-                      ? 8
-                      : laneColumnEnd + 2
-                  }}
-                >
-                  <TimelineItem
-                    name={item.name}
-                    dateRange={getItemRangeFormatted(item.start, item.end)}
-                    color={item.color}
-                    endingPos={(() => {
-                      if (hasContinuityOnNextWeek && hasStartedOnPreviousWeek)
-                        return 'center'
-                      if (hasContinuityOnNextWeek) return 'right'
-                      if (hasStartedOnPreviousWeek) return 'left'
-                      return undefined
-                    })()}
-                  />
-                </div>
-              )
-            })}
-          </div>
-        ))}
+            return (
+              <div
+                className={S.laneItem(
+                  hasStartedOnPreviousWeek,
+                  hasContinuityOnNextWeek
+                )}
+                key={item.id}
+                style={{
+                  gridColumnStart: hasStartedOnPreviousWeek
+                    ? 1
+                    : laneColumnStart + 1,
+                  gridColumnEnd: hasContinuityOnNextWeek ? 8 : laneColumnEnd + 2
+                }}
+              >
+                <TimelineItem
+                  name={item.name}
+                  dateRange={getItemRangeFormatted(item.start, item.end)}
+                  color={item.color}
+                  endingPos={(() => {
+                    if (hasContinuityOnNextWeek && hasStartedOnPreviousWeek)
+                      return 'center'
+                    if (hasContinuityOnNextWeek) return 'right'
+                    if (hasStartedOnPreviousWeek) return 'left'
+                    return undefined
+                  })()}
+                />
+              </div>
+            )
+          })
+        )}
       </div>
     </div>
   )
