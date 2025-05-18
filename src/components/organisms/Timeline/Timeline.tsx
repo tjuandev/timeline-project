@@ -3,17 +3,15 @@ import { useMemo } from 'react'
 import { eachDayOfInterval, endOfWeek, startOfWeek } from 'date-fns'
 
 import { useGenerateLanes } from './hooks/useGenerateLanes'
+import { usePaginateTimeline } from './hooks/usePaginateTimeline'
 
 import { Lanes } from './components/Lanes'
 import { WeekHeader } from './components/WeekHeader'
 import { type TimelineProps } from './types'
 
-export const Timeline = ({
-  date,
-  items,
-  onEditItem,
-  onClickContinuity
-}: TimelineProps) => {
+export const Timeline = ({ initialDate, items, onEditItem }: TimelineProps) => {
+  const { date, onClickContinuity } = usePaginateTimeline(initialDate)
+
   const weekInterval = useMemo(
     () => ({
       start: startOfWeek(date),
