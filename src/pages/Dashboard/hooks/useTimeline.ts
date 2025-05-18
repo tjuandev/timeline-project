@@ -3,11 +3,12 @@ import { useState } from 'react'
 import { addDays } from 'date-fns'
 
 import type { OnClickContinuity } from 'components/molecules/TimelineItem/types'
+import type { TimelineProps } from 'components/organisms/Timeline/types'
 
 import { TIMELINE_ITEMS_MOCK } from '../mocks'
 
 export const useTimeline = () => {
-  const [timelineItems] = useState(TIMELINE_ITEMS_MOCK)
+  const [timelineItems, setTimelineItems] = useState(TIMELINE_ITEMS_MOCK)
 
   const [currentPage, setCurrentPage] = useState(1)
 
@@ -25,9 +26,16 @@ export const useTimeline = () => {
     (currentPage - 1) * 7
   )
 
+  const onEditItem: TimelineProps['onEditItem'] = (item, values) => {
+    setTimelineItems(prev =>
+      prev.map(i => (i.id === item.id ? { ...i, ...values } : i))
+    )
+  }
+
   return {
     timelineItems,
     date,
-    onContinuityClick
+    onContinuityClick,
+    onEditItem
   }
 }

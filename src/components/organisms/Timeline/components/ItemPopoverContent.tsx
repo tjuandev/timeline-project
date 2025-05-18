@@ -28,8 +28,11 @@ export const ItemPopoverContent = ({
                 placeholder={name}
                 ref={editInputRef}
                 className="h-[28px]"
-                onBlur={() => {
-                  setIsEditing(false)
+                onKeyDown={e => {
+                  if (e.key === 'Enter') {
+                    onEditName(editInputRef.current?.value ?? name)
+                    setIsEditing(false)
+                  }
                 }}
               />
             ) : (

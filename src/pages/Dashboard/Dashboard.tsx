@@ -3,14 +3,14 @@ import { Timeline } from 'components/organisms/Timeline'
 import { useTimeline } from './hooks/useTimeline'
 
 export const Dashboard = () => {
-  const { timelineItems, date, onContinuityClick } = useTimeline()
+  const { timelineItems, date, onContinuityClick, onEditItem } = useTimeline()
 
   return (
     <div>
       <Timeline
         date={date}
         items={timelineItems}
-        onEditItem={() => {}}
+        onEditItem={onEditItem}
         onClickContinuity={onContinuityClick}
       />
     </div>
