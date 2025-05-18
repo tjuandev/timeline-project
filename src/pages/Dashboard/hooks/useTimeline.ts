@@ -34,17 +34,21 @@ export const useTimeline = () => {
 
   const startDay = itemsSortedByStartDate[0]?.start ?? ''
 
-  const firstWeekInterval = {
-    start: startOfWeek(addDays(startDay, currentPage * 7)),
-    end: endOfWeek(addDays(startDay, currentPage * 7))
+  const weekInterval = {
+    start: startOfWeek(addDays(startDay, (currentPage - 1) * 7)),
+    end: endOfWeek(addDays(startDay, (currentPage - 1) * 7))
   }
 
-  const weekIntervalDays = eachDayOfInterval(firstWeekInterval)
+  const weekIntervalDays = eachDayOfInterval(weekInterval)
 
-  const filteredItemsByWeekInterval = itemsSortedByStartDate.filter(item => {
-    const itemStart = item.start
-    return isWithinInterval(itemStart, firstWeekInterval)
-  })
+  const filteredItemsByWeekInterval = itemsSortedByStartDate.filter(
+    ({ start, end }) => {
+      return (
+        isWithinInterval(start, weekInterval) ||
+        isWithinInterval(end, weekInterval)
+      )
+    }
+  )
 
   const generateTimelineLanes = (): Array<Array<TimelineItem<Date>>> => {
     const lanes: Array<Array<TimelineItem<Date>>> = []

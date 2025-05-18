@@ -8,7 +8,7 @@ const columnVariants = cva(
     'w-full',
     'flex-col',
     'items-start',
-    '!gap-0',
+    'gap-0',
     'rounded-md',
     'border-l-4',
     'p-2',
@@ -27,8 +27,8 @@ const columnVariants = cva(
         purple: 'border-purple-500/90 bg-purple-200 hover:bg-purple-300/80'
       },
       endingPos: {
-        left: clsx('!rounded-r-none'),
-        right: clsx('!rounded-l-none')
+        right: clsx('rounded-r-none'),
+        left: clsx('rounded-l-none')
       }
     },
     defaultVariants: {

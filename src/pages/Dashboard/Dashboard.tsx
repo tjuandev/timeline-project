@@ -66,8 +66,8 @@ export const Dashboard = () => {
                     dateRange={getItemRangeFormatted(item.start, item.end)}
                     color={item.color}
                     endingPos={(() => {
-                      if (isEndingInCurrentWeek) return 'right'
-                      if (isStartingInCurrentWeek) return 'left'
+                      if (!isEndingInCurrentWeek) return 'right'
+                      if (!isStartingInCurrentWeek) return 'left'
                       return undefined
                     })()}
                   />
