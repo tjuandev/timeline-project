@@ -39,7 +39,7 @@ export const Timeline = ({ initialDate, items, onEditItem }: TimelineProps) => {
   })
 
   return (
-    <div>
+    <div className={S.container}>
       <Header
         weekIntervalDays={weekIntervalDays}
         onPreviousClick={onPreviousClick}

@@ -18,11 +18,13 @@ export const Dashboard = () => {
 
   return (
     <div className={S.container}>
-      <Timeline
-        initialDate={new Date()}
-        items={timelineItems}
-        onEditItem={onEditItem}
-      />
+      <div className={S.timelineContainer}>
+        <Timeline
+          initialDate={new Date()}
+          items={timelineItems}
+          onEditItem={onEditItem}
+        />
+      </div>
     </div>
   )
 }

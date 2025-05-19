@@ -5,6 +5,7 @@ const COLUMNS_GRID = 'grid-cols-7'
 const borderSet = clsx('border', 'border-gray-200')
 
 export const S = {
+  container: 'w-full',
   timelineContainer: clsx(
     borderSet,
     'border-r-0',
@@ -31,22 +32,20 @@ export const S = {
     '[&:last-child]:border-r-0',
     '[&:not(:first-child)]:border-l-0'
   ),
-  lanesContainer: clsx(
-    'grid',
-    COLUMNS_GRID,
-    'gap-y-4',
-    'gap-x-3',
-    'p-[12px]',
-    'h-20'
-  ),
+  laneContainer: clsx('grid', COLUMNS_GRID, 'h-[72px]'),
   laneItem: (
     hasContinuityOnNextWeek: boolean,
     hasStartedOnPreviousWeek: boolean
   ) =>
-    clsx({
-      'ml-[-12px]': hasContinuityOnNextWeek,
-      'mr-[-12px]': hasStartedOnPreviousWeek
-    }),
+    clsx(
+      {
+        'ml-[-6px]': hasContinuityOnNextWeek,
+        'mr-[-6px]': hasStartedOnPreviousWeek
+      },
+      'px-1.5',
+      'py-3',
+      'self-center'
+    ),
   popoverClose: clsx(
     'absolute',
     'top-[10px]',

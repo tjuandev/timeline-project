@@ -8,7 +8,7 @@ import { ItemPopoverContent } from './ItemPopoverContent'
 
 export const Lanes = ({ lanes, onEditItem, onClickContinuity }: LanesProps) => {
   return lanes.map((lane, index) => (
-    <div className={S.lanesContainer} key={index}>
+    <div className={S.laneContainer} key={index}>
       {lane.map(item => {
         const { columnStart, columnEnd, continuityTo } = item
 
