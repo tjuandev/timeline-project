@@ -109,7 +109,7 @@ I choose week view because month is too much info and day is too less. But in th
 
 How is a week view some items may contain several weeks, so i've added a button that can show before the item for those that started in the previous week and after it for those that will end in the next week or both, and by clicking on it it will go back to previous or next week:
 
-![Continuity UX](./docs/screenshots/continuity-ux.gif)
+![Continuity UX](https://ibb.co/JWzS0nv4)
 
 ### Week pagination and today button;
 
