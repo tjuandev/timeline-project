@@ -39,8 +39,8 @@ export const S = {
   ) =>
     clsx(
       {
-        'ml-[-6px]': hasContinuityOnNextWeek,
-        'mr-[-6px]': hasStartedOnPreviousWeek
+        'translate-x-[6px]': hasContinuityOnNextWeek,
+        'translate-x-[-6px]': hasStartedOnPreviousWeek
       },
       'px-1.5',
       'py-3',

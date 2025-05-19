@@ -22,8 +22,8 @@ export const Lanes = ({ lanes, onEditItem, onClickContinuity }: LanesProps) => {
         return (
           <div
             className={S.laneItem(
-              hasStartedOnPreviousWeek,
-              hasContinuityOnNextWeek
+              hasContinuityOnNextWeek,
+              hasStartedOnPreviousWeek
             )}
             key={item.id}
             style={{
