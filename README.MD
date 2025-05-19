@@ -123,8 +123,6 @@ By Clicking on a item it will show a popover with the item name, detailed date, 
 
 ![Edit Item](https://i.ibb.co/sJqcVKyK/edit-name.gif)
 
-
-
 ## What i would improve if i had more time
 
 - [ ] I would use component composition pattern where the timeline component could be broken into smaller components and you could pick and choose and compose the timeline as you want offering highly customization.
