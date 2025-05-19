@@ -109,19 +109,19 @@ I choose week view because month is too much info and day is too less. But in th
 
 How is a week view some items may contain several weeks, so i've added a button that can show before the item for those that started in the previous week and after it for those that will end in the next week or both, and by clicking on it it will go back to previous or next week:
 
-![Continuity UX](https://ibb.co/JWzS0nv4)
+![Continuity UX](https://i.ibb.co/GfVrB7WL/continuity-ux.gif)
 
 ### Week pagination and today button;
 
 I've added pagination buttons to go back and forth between weeks, and a today button to go to the current week.
 
-![Week Pagination](https://ibb.co/G4K3bhgL)
+![Week Pagination](https://i.ibb.co/5gNxf7qy/week-pagination.gif)
 
 ### Popover to edit item name and better visual feedback to improve user experience;
 
 By Clicking on a item it will show a popover with the item name, detailed date, and clicking on the pencil icon it will allow to edit the item name.
 
-![Edit Item](https://ibb.co/x86w71J1)
+![Edit Item](https://i.ibb.co/sJqcVKyK/edit-name.gif)
 
 
 
