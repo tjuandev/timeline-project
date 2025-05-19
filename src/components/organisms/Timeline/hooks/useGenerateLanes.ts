@@ -63,6 +63,11 @@ export const useGenerateLanes = ({
       }
     }
 
+    // Ensure minimum of 7 lanes
+    while (lanes.length < 7) {
+      lanes.push([])
+    }
+
     return lanes
   }
 

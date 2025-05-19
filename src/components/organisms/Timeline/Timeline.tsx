@@ -5,6 +5,8 @@ import { eachDayOfInterval, endOfWeek, startOfWeek } from 'date-fns'
 import { useGenerateLanes } from './hooks/useGenerateLanes'
 import { usePaginateTimeline } from './hooks/usePaginateTimeline'
 
+import { S } from './styles'
+
 import { Header } from './components/Header'
 import { Lanes } from './components/Lanes'
 import { WeekHeader } from './components/WeekHeader'
@@ -45,7 +47,7 @@ export const Timeline = ({ initialDate, items, onEditItem }: TimelineProps) => {
         onTodayClick={onTodayClick}
         isToday={isToday}
       />
-      <div>
+      <div className={S.timelineContainer}>
         <WeekHeader weekIntervalDays={weekIntervalDays} />
         <Lanes
           lanes={lanes}

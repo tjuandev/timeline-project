@@ -2,7 +2,10 @@ import clsx from 'clsx'
 
 const COLUMNS_GRID = 'grid-cols-7'
 
+const borderSet = clsx('border', 'border-gray-200')
+
 export const S = {
+  timelineContainer: clsx(borderSet, 'rounded-t-xl', 'h-full'),
   header: clsx('flex', 'justify-between', 'items-center', 'my-4'),
   headerTitle: clsx('text-xl', 'font-normal'),
   headerButtons: clsx('flex', 'gap-2'),
@@ -10,14 +13,26 @@ export const S = {
   weekDay: clsx(
     'text-gray-400',
     'font-medium',
-    'border',
-    'border-gray-200',
+    borderSet,
     'bg-gray-100',
     'py-2',
     'text-center',
-    'text-sm'
+    'border-t-0',
+    'text-sm',
+    '[&:first-child]:rounded-tl-xl',
+    '[&:first-child]:border-l-0',
+    '[&:last-child]:rounded-tr-xl',
+    '[&:last-child]:border-r-0'
   ),
-  lanesContainer: clsx('grid', COLUMNS_GRID, 'gap-y-4', 'gap-x-3', 'p-[12px]'),
+  lanesContainer: clsx(
+    'grid',
+    COLUMNS_GRID,
+    'gap-y-4',
+    'gap-x-3',
+    'p-[12px]',
+    '[&:nth-child(odd)]:bg-gray-100',
+    'h-20'
+  ),
   laneItem: (
     hasContinuityOnNextWeek: boolean,
     hasStartedOnPreviousWeek: boolean

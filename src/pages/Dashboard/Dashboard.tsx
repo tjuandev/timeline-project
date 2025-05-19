@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { Timeline } from 'components/organisms/Timeline'
 import type { TimelineProps } from 'components/organisms/Timeline/types'
 
+import { S } from './styles'
+
 import { TIMELINE_ITEMS_MOCK } from './mocks'
 
 export const Dashboard = () => {
@@ -15,7 +17,7 @@ export const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className={S.container}>
       <Timeline
         initialDate={new Date()}
         items={timelineItems}
