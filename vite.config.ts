@@ -6,7 +6,6 @@ import path from 'path'
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
   return {
-    base: `${process.env.VITE_PUBLIC_PATH}/`,
     build: {
       sourcemap: mode === 'development'
     },
