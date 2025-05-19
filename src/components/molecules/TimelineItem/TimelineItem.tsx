@@ -60,7 +60,9 @@ export const TimelineItem = ({
           />
         )}
       </div>
-      <PopoverContent align="start">{popoverContent}</PopoverContent>
+      <PopoverContent align="start" className={S.popoverContent}>
+        {popoverContent}
+      </PopoverContent>
     </Popover>
   )
 }

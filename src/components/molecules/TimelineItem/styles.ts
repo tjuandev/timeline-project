@@ -73,5 +73,6 @@ export const S = {
   dateRange: clsx('text-xs', 'text-gray-500', 'font-light'),
   continuityBtn: continuityButtonVariants,
   continuityButtonIcon: clsx('w-4', 'h-4'),
-  container: clsx('flex', 'h-14')
+  container: clsx('flex', 'h-14'),
+  popoverContent: clsx('w-full', 'md:max-w-2xl')
 }
