@@ -5,7 +5,13 @@ const COLUMNS_GRID = 'grid-cols-7'
 const borderSet = clsx('border', 'border-gray-200')
 
 export const S = {
-  timelineContainer: clsx(borderSet, 'rounded-t-xl', 'h-full'),
+  timelineContainer: clsx(
+    borderSet,
+    'border-r-0',
+    'rounded-t-xl',
+    'h-full',
+    'grid-border-cols-7'
+  ),
   header: clsx('flex', 'justify-between', 'items-center', 'my-4'),
   headerTitle: clsx('text-xl', 'font-normal'),
   headerButtons: clsx('flex', 'gap-2'),
@@ -22,7 +28,8 @@ export const S = {
     '[&:first-child]:rounded-tl-xl',
     '[&:first-child]:border-l-0',
     '[&:last-child]:rounded-tr-xl',
-    '[&:last-child]:border-r-0'
+    '[&:last-child]:border-r-0',
+    '[&:not(:first-child)]:border-l-0'
   ),
   lanesContainer: clsx(
     'grid',
@@ -30,7 +37,6 @@ export const S = {
     'gap-y-4',
     'gap-x-3',
     'p-[12px]',
-    '[&:nth-child(odd)]:bg-gray-100',
     'h-20'
   ),
   laneItem: (

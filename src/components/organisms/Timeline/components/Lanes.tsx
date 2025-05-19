@@ -48,7 +48,11 @@ export const Lanes = ({ lanes, onEditItem, onClickContinuity }: LanesProps) => {
               popoverContent={
                 <ItemPopoverContent
                   name={item.name}
-                  dateRange={getItemRangeFormatted(item.start, item.end)}
+                  dateRange={getItemRangeFormatted(
+                    item.start,
+                    item.end,
+                    'MMM d, yyyy'
+                  )}
                   onEditName={name => {
                     onEditItem(item, { name })
                   }}

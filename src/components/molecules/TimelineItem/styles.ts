@@ -19,7 +19,7 @@ const mainButtonVariants = cva(
     variants: {
       color: {
         red: 'border-red-500/90 bg-red-200 hover:bg-red-300/80',
-        yellow: 'border-yellow-500/80 bg-yellow-400/30 hover:bg-yellow-300/60',
+        yellow: 'border-yellow-500/80 bg-yellow-200 hover:bg-yellow-300/60',
         green: 'border-green-500/90 bg-green-200 hover:bg-green-300/80',
         blue: 'border-blue-500/90 bg-blue-200 hover:bg-blue-300/80',
         lightBlue: 'border-sky-500/90 bg-sky-200 hover:bg-sky-300/80',

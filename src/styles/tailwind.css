@@ -66,3 +66,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .grid-border-cols-7 {
+    background: repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent calc(100% / 7 - 1px),
+      rgb(229 231 235 / var(--tw-border-opacity)) calc(100% / 7 - 1px),
+      rgb(229 231 235 / var(--tw-border-opacity)) calc(100% / 7)
+    );
+  }
+}
