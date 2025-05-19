@@ -4,6 +4,8 @@ import { areIntervalsOverlapping } from 'date-fns'
 
 import { type LaneItem, type UseTimelineItemsProps } from '../types'
 
+const MINIMUM_LANES = 7
+
 export const useGenerateLanes = ({
   items,
   weekInterval,
@@ -63,8 +65,7 @@ export const useGenerateLanes = ({
       }
     }
 
-    // Ensure minimum of 7 lanes
-    while (lanes.length < 7) {
+    while (lanes.length < MINIMUM_LANES) {
       lanes.push([])
     }
 
