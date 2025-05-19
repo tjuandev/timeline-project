@@ -4,13 +4,19 @@ A React timeline component based on Notion's visual style and retro-style design
 
 ![Timeline](./docs/screenshots/timeline.png)
 
-Table of Contents
-
+## Table of Contents
 - [Features](#features)
 - [Usage](#usage)
 - [Time spent](#time-spent)
 - [How i created this](#how-i-created-this)
+- [Inspirations](#inspirations)
+- [Project structure](#project-structure)
 - [Interactive features](#interactive-features)
+  - [Display timeline items by week view](#display-timeline-items-by-week-view)
+  - [Continuity UX support](#continuity-ux-support)
+  - [Week pagination and today button](#week-pagination-and-today-button)
+  - [Popover to edit item name and better visual feedback to improve user experience](#popover-to-edit-item-name-and-better-visual-feedback-to-improve-user-experience)
+- [What i would improve if i had more time](#what-i-would-improve-if-i-had-more-time)
 
 
 ## Features
@@ -48,11 +54,48 @@ I've spent about 7 hours in this task, tracked using Toggl Track:
 
 ## How i created this
 
-This is a component made for Qloo interview process.
+I began by understanding the requirements of the project. To stay organized, I created a Notion page where I documented all the functional requirements that were provided. After that, I explored Dribbble and the Figma Community for inspiration and reference examples. Based on what I found, I started planning additional functional features I wanted to include beyond the original scope.
 
-I've started it by understanding what should i had to do, i created a notion page and documented the functional requirements that was asked. Then i started searching in Dribble and Figma Community for inspirations and examples. After it i started to plan my own functional requirements that i would like to bring in addition to the ones asked.
+For development, I bootstrapped the project using a Vite boilerplate that included useful tooling such as linting, formatting, TypeScript, Git hooks, and Tailwind CSS configuration, it also has some others config that was not used like Storybook and Vitest. For the UI, I chose Shadcn because it offers accessible, ready-to-use components with solid end-to-end support.
 
-Then i started to code, i've started by using a boilerplate for Vite project that would bring me a lot of utilities like Linting, Formatting, TypeScript, Git Hooks, Tailwind Config, etc. For UI i choose Shadcn as well because it provided end-to-end accessibility support and a lot of components that i could use. And my process was first create a read only version of timeline with the fundamental features asked in instructions.md, such as creation of lanes, managing overlapping, displaying item name and date, and positioning it correctly over week days columns.
+My initial focus was to implement a read-only version of the timeline. I prioritized the core features outlined in the instructions.md, such as lane creation, overlapping item management, displaying item names and dates, and correctly positioning items across the weekly columns.
+
+## Inspirations
+
+- [Notion](https://www.notion.so/)
+- [Defcon Timeline Figma Project](https://www.figma.com/design/AYEo0BNHKPhDUGoxeIGqju/Defcon---Calendar-Schedule-Timeline-dashboard--Community-?m=auto&t=mDVZKb8ZfPZZRgHi-6)
+
+
+## Project structure
+
+The components were organized using atomic [design pattern](https://atomicdesign.bradfrost.com/chapter-2/) in order to make it easier to maintain and extend. Also the principle of [colocation](https://kentcdodds.com/blog/colocation) was highly applied, making the structure easy to navigate and to make decisions.
+
+
+So the main folder structure is:
+
+```bash
+src/
+├── components/
+│   ├── atom/ # Atoms are the smallest units of UI components, such as buttons, inputs, and text.
+│   ├── molecule/ # Molecules are more complex components built from atoms, such as form fields, dropdowns, and modals.
+│   └── organism/ # Organisms are larger components that combine multiple molecules and atoms, such as a header, footer, or sidebar.
+│
+├── helpers/ # Global Helper functions
+│
+├── styles/ # Global styles like theming.
+│
+└── pages/ # Pages are the main components that are used to build the app.
+```
+
+Other folders that may appear as the project grows are:
+
+```bash
+├── hooks/ # Global utility hooks
+├── services/ # Global services like api calls
+├── types/ # Global types
+└── providers/ # Global providers like theme provider
+└── store/ # Place to handle global state with tools like Redux, Zustand, etc.
+```
 
 ## Interactive features
 
@@ -82,9 +125,21 @@ By Clicking on a item it will show a popover with the item name, detailed date, 
 
 
 
+## What i would improve if i had more time
 
+- [ ] I would use component composition pattern where the timeline component could be broken into smaller components and you could pick and choose and compose the timeline as you want offering highly customization.
 
+- [ ] Make TimelineItem molecule more generic, i think it was a bad decision the way i created it coupled with a popover, it's too complex to be reused.
 
+- [ ] Support for month view and day view;
+- [ ] Support for timeline items creation / deletion;
+- [ ] Component testing and end to end testing;
+- [ ] Support for timeline items drag and drop;
+- [ ] Support for timeline items resizing to change min/max duration;
 
-
-
+- [ ] Improve the popover to be able to edit:
+  - [ ] Start date;
+  - [ ] End date;
+  - [ ] Color;
+  - [ ] Description;
+- [ ] Publish as npm package;
