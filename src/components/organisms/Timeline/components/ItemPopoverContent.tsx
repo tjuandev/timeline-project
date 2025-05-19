@@ -30,7 +30,7 @@ export const ItemPopoverContent = ({
                 className="h-[28px]"
                 onKeyDown={e => {
                   if (e.key === 'Enter') {
-                    onEditName(editInputRef.current?.value ?? name)
+                    onEditName(editInputRef.current?.value || name)
                     setIsEditing(false)
                   }
                 }}
@@ -47,7 +47,7 @@ export const ItemPopoverContent = ({
               setIsEditing(prev => !prev)
 
               if (isEditing) {
-                onEditName(editInputRef.current?.value ?? name)
+                onEditName(editInputRef.current?.value || name)
                 return
               }
 
