@@ -35,14 +35,15 @@ export const S = {
   laneContainer: clsx('grid', COLUMNS_GRID, 'h-[72px]'),
   laneItem: (
     hasContinuityOnNextWeek: boolean,
-    hasStartedOnPreviousWeek: boolean
+    hasStartedOnPreviousWeek: boolean,
+    hasBothContinuity: boolean
   ) =>
     clsx(
       {
-        'translate-x-[6px]': hasContinuityOnNextWeek,
-        'translate-x-[-6px]': hasStartedOnPreviousWeek
+        'translate-x-[6px]': hasContinuityOnNextWeek && !hasBothContinuity,
+        'translate-x-[-6px]': hasStartedOnPreviousWeek && !hasBothContinuity,
+        'px-1.5': !hasBothContinuity
       },
-      'px-1.5',
       'py-3',
       'self-center'
     ),

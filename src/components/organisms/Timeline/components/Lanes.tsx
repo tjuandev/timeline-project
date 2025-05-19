@@ -23,7 +23,8 @@ export const Lanes = ({ lanes, onEditItem, onClickContinuity }: LanesProps) => {
           <div
             className={S.laneItem(
               hasContinuityOnNextWeek,
-              hasStartedOnPreviousWeek
+              hasStartedOnPreviousWeek,
+              hasContinuityOnNextWeek && hasStartedOnPreviousWeek
             )}
             key={item.id}
             style={{
@@ -35,13 +36,7 @@ export const Lanes = ({ lanes, onEditItem, onClickContinuity }: LanesProps) => {
               name={item.name}
               dateRange={getItemRangeFormatted(item.start, item.end)}
               color={item.color}
-              continuityTo={(() => {
-                if (hasContinuityOnNextWeek && hasStartedOnPreviousWeek)
-                  return 'both'
-                if (hasContinuityOnNextWeek) return 'right'
-                if (hasStartedOnPreviousWeek) return 'left'
-                return undefined
-              })()}
+              continuityTo={continuityTo}
               onClickContinuity={position => {
                 onClickContinuity?.(position)
               }}
